@@ -4,6 +4,9 @@ This extension shows your and your opponent's lag (ping) while playing game on L
 Important: for now it only works in time controls without increment.
 
 ![Image](https://snag.gy/TkcuVI.jpg?raw=true "Screenshot")
+
+Click to watch the video:
+
 [![Watch the video](https://i.snag.gy/e2LAp3.jpg)](https://youtu.be/U-rSg07QR5g)
 
 There are two ways to install it:
