@@ -3,7 +3,7 @@ This extension shows your and your opponent's lag (ping) while playing game on L
 
 ![Image](https://snag.gy/TkcuVI.jpg?raw=true "Screenshot")
 
-There are two way to install it:
+There are two ways to install it:
 1. Download "Tampermonkey": https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=en
 Click "Create a new script" in Tampermonkey. Copy all the code from the file "CodeForTampermonkey.js" to this script, deleting all previous code. Click save.
 
