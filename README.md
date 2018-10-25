@@ -1,6 +1,6 @@
 # Measure-opponent-s-lag-on-Lichess
 This extension shows your and your opponent's lag (ping) while playing game on Lichess.org
-
+Important: for now it only works in ultrabullet!
 ![Image](https://snag.gy/TkcuVI.jpg?raw=true "Screenshot")
 
 There are two ways to install it:
