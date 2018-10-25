@@ -1,0 +1,20 @@
+{
+    "manifest_version": 2,
+    "name": "LiChess Lag Measurement",
+    "description": "This extension shows your and your opponent's lag (ping) while playing game on Lichess.org",
+    "version": "0.1",
+    "permissions": [
+        "storage"
+    ],
+    "content_scripts": [
+        {
+            "matches": [
+                "http://lichess.org/*",
+                "https://lichess.org/*"
+            ],
+           "js": [
+                "./code.js"
+            ]
+        }
+    ]
+}
