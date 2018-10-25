@@ -10,6 +10,28 @@
      newDiv.innerHTML = "Lag Measurements";
 
 
+ try {
+        var script = document.querySelectorAll('script')[2].textContent;
+        script = script.substr(script.indexOf('data: ') + 6);
+        script = script.substr(0, script.indexOf('i18n:'));
+        script = script.substr(0, script.lastIndexOf(',')).trim();
+        var data = JSON.parse(script);
+    } catch (e) {
+        console.log('clock extension: Lichess clock data not available on this page.');
+    }
+
+     var clockthings = data['clock'];
+     var initialtime = clockthings['initial'];
+     var initialtimehalf = initialtime;
+     initialtime = initialtime*2;
+
+
+
+
+
+
+
+
 
 
 
@@ -75,7 +97,7 @@ document.getElementsByClassName("cg-board")[0].onmouseup = function() {getCommon
 
          var checkstatus = document.getElementsByClassName("result_wrap")[0];
 
-      if ((readTime(myClock)< 15 || readTime(opClock)< 15) && (checkstatus == undefined || checkstatus == null))
+      if ((readTime(myClock)< initialtimehalf || readTime(opClock)< initialtimehalf) && (checkstatus == undefined || checkstatus == null))
       {
 
 if (n > 0) {
@@ -85,8 +107,8 @@ timeduration = arrayofperformancetimes[n] - arrayofperformancetimes[0];
     howmanymoves = numberofmoves();
     myTime = readTime(myClock);
     opTime = readTime(opClock);
-    timepassedonclock = (30-(myTime+opTime))*1000
-    commonlag = Math.round(((timeduration-((30-(myTime+opTime))*1000))/(howmanymoves-numberofmovesonfirstcheck))*2);
+    timepassedonclock = (initialtime-(myTime+opTime))*1000
+    commonlag = Math.round(((timeduration-((initialtime-(myTime+opTime))*1000))/(howmanymoves-numberofmovesonfirstcheck))*2);
     n = n + 1;
   var yourpingaccordingtolichess = document.getElementsByClassName("ping hint--left")[0];
     if (document.getElementsByClassName("ping hint--left")[0] === undefined || document.getElementsByClassName("ping hint--left")[0] === null){
@@ -133,7 +155,7 @@ console.log("Opponent's ping:", pingofopponent,
 }
           if (n == 0)
           {
-arrayofperformancetimes[0] = (Date.now())-((30-(readTime(myClock)+readTime(opClock)))*1000);
+arrayofperformancetimes[0] = (Date.now())-((initialtime-(readTime(myClock)+readTime(opClock)))*1000);
                 n = 1;
               numberofmovesonfirstcheck = numberofmoves();
              // console.log(arrayofperformancetimes[0], n);
