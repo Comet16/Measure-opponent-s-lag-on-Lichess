@@ -17,7 +17,8 @@
         script = script.substr(0, script.lastIndexOf(',')).trim();
         var data = JSON.parse(script);
     } catch (e) {
-        console.log('clock extension: Lichess clock data not available on this page.');
+       // console.log('clock extension: Lichess clock data not available on this page.');
+      newDiv.innerHTML = "Lichess clock data not available on this page";
     }
 
      var clockthings = data['clock'];
