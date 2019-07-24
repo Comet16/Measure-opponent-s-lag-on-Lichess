@@ -8,7 +8,8 @@
 
 // @include */lichess.org/*
  setTimeout(function(){
-     var lichess = document.querySelector('#lichess');
+   //  var lichess = document.querySelector('#lichess');
+    var lichess = document.getElementsByClassName("round__app variant-standard")[0];
 
 
       var newDiv = document.createElement("p");
@@ -18,7 +19,7 @@
  newDiv.id = "Lag";
      newDiv.innerHTML = "Lag Measurements";
 
-
+/*
  try {
         var script = document.querySelectorAll('script')[2].textContent;
         script = script.substr(script.indexOf('data: ') + 6);
@@ -28,12 +29,36 @@
     } catch (e) {
          // console.log('clock extension: Lichess clock data not available on this page.');
       newDiv.innerHTML = "Lichess clock data not available on this page";
+    }*/
+
+var myClock = document.querySelector('.rclock.rclock-bottom'),
+      opClock = document.querySelector('.rclock.rclock-top');
+
+var board = document.querySelectorAll("cg-board")[0];
+var rect = board.getBoundingClientRect();
+
+
+function toSeconds(time) {
+        var parts = time.trim().split(':');
+        var m = parseInt(parts[0]);
+        var secParts = parts[1].split('.');
+        var s = parseInt(secParts[0]);
+        var h = secParts.length > 1 ? parseInt(secParts[1].substr(0, 1)) : 0;
+        var val = m * 60 + s + h / 10;
+        return val;
+    }
+ function readTime(clock) {
+        var timer = clock.querySelector('.time');
+        return timer ? toSeconds(timer.textContent) : 0;
     }
 
-     var clockthings = data['clock'];
-     var initialtime = clockthings['initial'];
-     var initialtimehalf = initialtime;
-     initialtime = initialtime*2;
+console.log(readTime(myClock), readTime(opClock));
+
+
+    
+     
+     var initialtimehalf = readTime(myClock);
+  var initialtime = initialtimehalf*2
 
 
 
@@ -67,7 +92,7 @@
      var clickpingonce = 0;
     // var yourpingaccordingtolichess;
      var yourpingaccordingtolichess, pingnumber, pingofopponent;
-
+/*
 function toSeconds(time) {
         var parts = time.trim().split(':');
         var m = parseInt(parts[0]);
@@ -88,40 +113,47 @@ var myClock = lichess.querySelector('.clock.clock_bottom'),
 //console.log(myGameTime, opGameTime);
 console.log(readTime(myClock), readTime(opClock));
 
-
+*/
 
 
 
 function numberofmoves() {
-    movesall = document.querySelectorAll(".moves move");
+    console.log("agaeg");
+    movesall = document.querySelectorAll(".moves m2");
 movesnumber = movesall.length;
+    console.log(movesnumber);
 return movesnumber;
+
 }
      console.log(numberofmoves());
 
 
-document.getElementsByClassName("cg-board")[0].onmouseup = function() {getCommonLag()};
+document.querySelectorAll("cg-board")[0].onmouseup = function() {getCommonLag()};
 
 
      function getCommonLag() {
 
          var checkstatus = document.getElementsByClassName("result_wrap")[0];
-
+console.log(checkstatus);
       if ((readTime(myClock)< initialtimehalf || readTime(opClock)< initialtimehalf) && (checkstatus == undefined || checkstatus == null))
       {
 
 if (n > 0) {
+    console.log("moves");
    // if ((n > 0) && ((numberofmoves())>numberofmovesonfirstcheck)) {
 arrayofperformancetimes[n] = Date.now();
 timeduration = arrayofperformancetimes[n] - arrayofperformancetimes[0];
     howmanymoves = numberofmoves();
+    console.log("wakak");
     myTime = readTime(myClock);
     opTime = readTime(opClock);
     timepassedonclock = (initialtime-(myTime+opTime))*1000
     commonlag = Math.round(((timeduration-((initialtime-(myTime+opTime))*1000))/(howmanymoves-numberofmovesonfirstcheck))*2);
     n = n + 1;
-  var yourpingaccordingtolichess = document.getElementsByClassName("ping hint--left")[0];
-    if (document.getElementsByClassName("ping hint--left")[0] === undefined || document.getElementsByClassName("ping hint--left")[0] === null){
+//  var yourpingaccordingtolichess = document.getElementsByClassName("ping hint--left")[0];
+var yourpingaccordingtolichess = document.getElementsByClassName("ping")[0];
+  if (document.getElementsByClassName("ping")[0] === undefined || document.getElementsByClassName("ping")[0] === null){
+   // if (document.getElementsByClassName("ping hint--left")[0] === undefined || document.getElementsByClassName("ping hint--left")[0] === null){
  document.getElementById("user_tag").click();
      document.getElementById("user_tag").click();
         /*
@@ -148,7 +180,7 @@ timeduration = arrayofperformancetimes[n] - arrayofperformancetimes[0];
            document.getElementsByClassName("dropdown")[0].style.display = "";
       }
     } */
-yourpingaccordingtolichess = document.getElementsByClassName("ping hint--left")[0];
+yourpingaccordingtolichess = document.getElementsByClassName("ping")[0];
     pingnumber = yourpingaccordingtolichess.getElementsByTagName("strong")[0].innerText;
     pingofopponent = commonlag - pingnumber;
     newDiv.innerHTML = "Opponent's approximate lag: " + pingofopponent + "<br />" + " Common lag: " + commonlag + "<br />" + " Your ping according to Lichess: " + pingnumber;
