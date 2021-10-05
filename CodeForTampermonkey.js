@@ -1,12 +1,3 @@
-// ==UserScript==
-// @name     FindCommonLag
-// @version  1
-// @grant    none
-// @run-at document-idle
-// @include /^https://lichess\.org/([a-zA-Z0-9]+(/(white|black).*)?$|analysis|training)
-// ==/UserScript==
-
-// @include */lichess.org/*
  setTimeout(function(){
    //  var lichess = document.querySelector('#lichess');
     var lichess = document.getElementsByClassName("round__app variant-standard")[0];
@@ -55,21 +46,8 @@ function toSeconds(time) {
 console.log(readTime(myClock), readTime(opClock));
 
 
-    
-     
      var initialtimehalf = readTime(myClock);
   var initialtime = initialtimehalf*2
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -139,6 +117,7 @@ console.log(checkstatus);
       {
 
 if (n > 0) {
+    
     console.log("moves");
    // if ((n > 0) && ((numberofmoves())>numberofmovesonfirstcheck)) {
 arrayofperformancetimes[n] = Date.now();
@@ -148,7 +127,7 @@ timeduration = arrayofperformancetimes[n] - arrayofperformancetimes[0];
     myTime = readTime(myClock);
     opTime = readTime(opClock);
     timepassedonclock = (initialtime-(myTime+opTime))*1000
-    commonlag = Math.round(((timeduration-((initialtime-(myTime+opTime))*1000))/(howmanymoves-numberofmovesonfirstcheck))*2);
+    commonlag = Math.round(((timeduration-((initialtime-(myTime+opTime))*1000))/(n)));
     n = n + 1;
 //  var yourpingaccordingtolichess = document.getElementsByClassName("ping hint--left")[0];
 var yourpingaccordingtolichess = document.getElementsByClassName("ping")[0];
@@ -187,9 +166,6 @@ yourpingaccordingtolichess = document.getElementsByClassName("ping")[0];
 
 
 
-
-
-
 console.log("Opponent's ping:", pingofopponent,
             "Common lag:", commonlag,
             "Your ping:", pingnumber,
@@ -212,12 +188,6 @@ arrayofperformancetimes[0] = (Date.now())-((initialtime-(readTime(myClock)+readT
 
 
 
-
-
-
-
-
-
      /*
 var result = [];
 for (var i = 0, l = movesall.length; i < l; i++) {
@@ -228,22 +198,5 @@ console.log(result);
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
  }, 500);
+
